@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>QR Code Scanner</h1>
+            <p>Scan QR codes using your camera or upload an image</p>
+        </header>
+
+        <div class="scanner-container">
+            <!-- Mode Toggle -->
+            <div class="mode-toggle">
+                <button id="camera-mode-btn" class="mode-btn active">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                    Camera
+                </button>
+                <button id="file-mode-btn" class="mode-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14,2 14,8 20,8"></polyline>
+                    </svg>
+                    Upload
+                </button>
+            </div>
+
+            <!-- Camera Scanner -->
+            <div id="camera-section" class="scanner-section active">
+                <div id="reader" class="qr-reader"></div>
+                <div class="camera-controls">
+                    <button id="start-btn" class="control-btn primary">Start Camera</button>
+                    <button id="stop-btn" class="control-btn secondary" style="display: none;">Stop Camera</button>
+                </div>
+            </div>
+
+            <!-- File Upload Scanner -->
+            <div id="file-section" class="scanner-section">
+                <div class="upload-area" id="upload-area">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7,10 12,15 17,10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <p>Drop an image here or click to select</p>
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                </div>
+                <button id="scan-file-btn" class="control-btn primary" style="display: none;">Scan Image</button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-section" class="results-section" style="display: none;">
+            <h3>Scan Result</h3>
+            <div id="result-content" class="result-content"></div>
+            <div class="result-actions">
+                <button id="copy-btn" class="control-btn secondary">Copy</button>
+                <button id="clear-btn" class="control-btn secondary">Clear</button>
+            </div>
+        </div>
+
+        <!-- Status Messages -->
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
